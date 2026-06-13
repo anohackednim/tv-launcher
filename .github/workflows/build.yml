@@ -15,9 +15,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Build with Gradle
-      run: gradle assembleDebug
+      run: |
+        if [ -d "tv-launcher" ]; then cd tv-launcher; fi
+        gradle assembleDebug
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: TV-Launcher-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: "**/app-debug.apk"
