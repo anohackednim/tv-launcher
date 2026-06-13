@@ -19,7 +19,14 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: gradle
+
+    - name: Download Gradle
+      run: |
+        mkdir -p gradle/wrapper
+        cd gradle/wrapper
+        curl -L https://services.gradle.org/distributions/gradle-8.2-bin.zip -o gradle-8.2-bin.zip
+        unzip gradle-8.2-bin.zip
+        cd ../..
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
